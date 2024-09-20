@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+import cloudinary
+from decouple import config # the small letter config 
 
 from pathlib import Path
 
@@ -16,6 +18,9 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 PROJECT_DIR = BASE_DIR.parent
+
+TEMPLATE_DIR = BASE_DIR /'templates'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -56,7 +61,7 @@ ROOT_URLCONF = 'lewishome.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,3 +132,9 @@ MEDIA_ROOT = PROJECT_DIR/'local_cdn/media' # that is where am going to create my
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+CLOUDINARY_CLOUD_NAME = config("CLOUDINARY_CLOUD_NAME")
+CLOUDINARY_CLOUND_API_KEY = config("CLOUDINARY_CLOUND_API_KEY")
+CLOUDINARY_CLOUND_API_SECRET = config("CLOUDINARY_CLOUND_API_SECRET")
