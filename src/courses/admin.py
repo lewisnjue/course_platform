@@ -6,12 +6,16 @@ from cloudinary import CloudinaryImage # for me to render image stored in clound
 # Register your models here.
 class LessonInline(admin.StackedInline):
     model = Lesson
-    readonly_fields = ['updated','public_id','display_image']
+    readonly_fields = ['updated','public_id','display_image','display_video']
     extra = 0
 
     def display_image(self,obj,*args,**kwargs):
         image_url = helpers.get_cloudinary_img_object(obj,width=200,field_name='thumbnail')
         return format_html(f"<img src={image_url} />" )
+    def display_video(self,obj,*args,**kwargs):
+        image_url = helpers.get_cloudinary_video_object(obj,width=500,field_name='video',as_html=True)
+        
+        return format_html(f"{image_url}" )
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     inlines= [LessonInline]

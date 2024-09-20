@@ -127,7 +127,7 @@ class Lesson(models.Model):
     title = models.CharField(max_length=20)
     description = models.TextField(blank=True,null=True)
     thumbnail = CloudinaryField('image',null=True,blank=True,public_id_prefix=get_public_id_prefix,display_name=get_display_name,tags=['thumbnail','lesson'])
-    video = CloudinaryField('video',resource_type='video',null=True,blank=True,public_id_prefix=get_public_id_prefix,display_name=get_display_name,tags=['video','thumbnail','lesson'])
+    video = CloudinaryField('video',resource_type='video',null=True,blank=True,public_id_prefix=get_public_id_prefix,display_name=get_display_name,tags=['video','thumbnail','lesson'],type='private')
     can_preview = models.BooleanField(default=False,help_text="if user dont have access to this course can they see this ")
     order = models.IntegerField(default=0)
     status = models.CharField(
