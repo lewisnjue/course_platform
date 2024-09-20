@@ -1,12 +1,17 @@
 from django.contrib import admin
 from .models import Course,Lesson
-from django.utils.html import format_html
-from cloudinary import CloudinaryImage
+from django.utils.html import format_html # for enabling me to return html in my admin page 
+import helpers
+from cloudinary import CloudinaryImage # for me to render image stored in cloundinary and alter its size 
 # Register your models here.
 class LessonInline(admin.StackedInline):
     model = Lesson
-    readonly_fields = ['updated','public_id']
+    readonly_fields = ['updated','public_id','display_image']
     extra = 0
+
+    def display_image(self,obj,*args,**kwargs):
+        image_url = helpers.get_cloudinary_img_object(obj,width=200,field_name='thumbnail')
+        return format_html(f"<img src={image_url} />" )
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     inlines= [LessonInline]
