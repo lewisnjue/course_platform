@@ -5,15 +5,15 @@ from cloudinary import CloudinaryImage
 # Register your models here.
 class LessonInline(admin.StackedInline):
     model = Lesson
-    readonly_fields = ['updated',]
+    readonly_fields = ['updated','public_id']
     extra = 0
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     inlines= [LessonInline]
     list_display =['title','status','access']
     list_filter = ['status','access']
-    fields = ['title','description','status','image','access','display_image']
-    readonly_fields = ['display_image']
+    fields = ['public_id','title','description','status','image','access','display_image']
+    readonly_fields = ['display_image','public_id']
     def display_image(self,obj,*args,**kwargs):
         image_url = obj.image_admin
         cloudinary_id = str(obj.image)
