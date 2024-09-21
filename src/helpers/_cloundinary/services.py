@@ -1,4 +1,4 @@
-from    django.template.loader import get_template
+from django.template.loader import get_template
 from django.conf import settings
 def get_cloudinary_img_object(instance,field_name="image",as_html=False,width=200):
           

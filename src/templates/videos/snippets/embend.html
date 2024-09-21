@@ -1,3 +1,19 @@
-<video controls autopaly data-cloud-name="{{cloud_name}}">
-    <source  src="{{ video_url }}"/>
-    </video>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-video-player/2.1.0/cld-video-player.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-video-player/2.1.0/cld-video-player.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<video id="VideoPlayerElement" controls autopaly data-cloud-name="{{cloud_name}}" data-video-url="{{video_url}}">
+</video>
+<script>
+    const videoPlayerId = 'demo-player'
+   
+    const VideoPlayerElement = document.getElementById(videoPlayerId)
+    if (VideoPlayerElement){
+        const cloudName=VideoPlayerElement.dataset.cloudName
+        const videoUrl = VideoPlayerElement.dataset.videoUrl
+        const cld = cloudinary.videoPlayer(videoPlayerId,{
+            cloudName:cloudName
+        })
+        cld.source(videoUrl)
+
+    }
+</script>

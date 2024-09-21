@@ -15,7 +15,6 @@ class AccessReguirments(models.TextChoices):
 
 
 
-
 class PublishStatus(models.TextChoices):
     PUBLISHED = "pub","published"
     DRAFT = "draft","draft"

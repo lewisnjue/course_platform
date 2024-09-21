@@ -8,6 +8,6 @@ def cloudinary_init():
         cloud_name = CLOUDINARY_CLOUD_NAME, 
         api_key = CLOUDINARY_CLOUND_API_KEY, 
         api_secret = CLOUDINARY_CLOUND_API_SECRET,
-        secure=True
+        secure=True # make sure it is https instead of http 
     )
 
